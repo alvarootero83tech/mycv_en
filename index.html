@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Álvaro Otero Cobo — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfbf3;
+    --surface: #fffef9;
+    --line: #e8e4d8;
+    --accent: #4a9fd4;
+    --accent2: #2a7db5;
+    --muted: #444444;
+    --text: #111111;
+    --text-soft: #333333;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 60px 32px 100px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: end;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 48px;
+    margin-bottom: 56px;
+    animation: fadeUp .7s ease both;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: .2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(48px, 7vw, 80px);
+    line-height: 1;
+    letter-spacing: -.02em;
+    color: var(--text);
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-role {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin-top: 16px;
+    letter-spacing: .05em;
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    text-align: right;
+    min-width: 200px;
+  }
+
+  .hero-meta a {
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 12px;
+    transition: color .2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: flex-end;
+  }
+
+  .hero-meta a:hover { color: var(--accent); }
+
+  .hero-meta .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    margin-bottom: 64px;
+    animation: fadeUp .7s ease both;
+  }
+
+  section:nth-child(2) { animation-delay: .1s; }
+  section:nth-child(3) { animation-delay: .15s; }
+  section:nth-child(4) { animation-delay: .2s; }
+  section:nth-child(5) { animation-delay: .25s; }
+  section:nth-child(6) { animation-delay: .3s; }
+
+  .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .sec-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .sec-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* ── SUMMARY ── */
+  .summary {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--text-soft);
+    max-width: 700px;
+  }
+
+  .summary strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .exp-roles {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 14px;
+  }
+
+  .exp-role-line {
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .exp-role-line span {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-left: 8px;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 0 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-date {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: .05em;
+    padding-top: 3px;
+    line-height: 1.6;
+  }
+
+  .exp-company {
+    font-size: 11px;
+    letter-spacing: .1em;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .exp-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .exp-location {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    letter-spacing: .05em;
+  }
+
+  .exp-desc {
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .tag {
+    font-size: 10px;
+    letter-spacing: .1em;
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    text-transform: uppercase;
+    transition: all .2s;
+  }
+
+  .tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .client-link {
+    font-size: 11px;
+    letter-spacing: .05em;
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    color: var(--accent2);
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .client-link:hover {
+    border-color: var(--accent2);
+    background: rgba(42,125,181,.07);
+  }
+
+  /* ── SKILLS GRID ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .skill-cell {
+    background: var(--surface);
+    padding: 20px 22px;
+    transition: background .2s;
+    cursor: default;
+  }
+
+  .skill-cell:hover { background: #eef6fb; }
+
+  .skill-cell .skill-name {
+    font-size: 12px;
+    color: var(--text);
+    letter-spacing: .05em;
+    margin-bottom: 6px;
+  }
+
+  .skill-cell .skill-bar {
+    height: 2px;
+    background: var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-cell .skill-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    background: var(--accent);
+    transition: width 1s ease;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 0 32px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .edu-item:last-child { border-bottom: none; }
+
+  .edu-year {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .edu-school {
+    font-size: 11px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 4px;
+  }
+
+  .edu-degree {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--text);
+  }
+  .edu-degree a {
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 18px;
+    transition: color .2s;
+    display: flex;
+    gap: 6px;
+  }
+  .edu-degree a:hover { color: var(--accent); }
+
+  /* ── CERTS ── */
+  .certs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cert-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    transition: border-color .2s;
+  }
+
+  .cert-item:hover { border-color: var(--accent); }
+
+  .cert-icon {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(74,159,212,.12);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  .cert-name {
+    font-size: 12px;
+    color: var(--text-soft);
+  }
+
+  /* ── LANGS ── */
+  .langs {
+    display: flex;
+    gap: 24px;
+  }
+
+  .lang-item {
+    flex: 1;
+    padding: 24px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  .lang-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .lang-level {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: .08em;
+  }
+
+  /* ── ANIM ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 620px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-meta { align-items: flex-start; text-align: left; }
+    .hero-meta a { justify-content: flex-start; }
+    .exp-item, .edu-item { grid-template-columns: 1fr; gap: 6px; }
+    .langs { flex-direction: column; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div>
+      <div class="hero-label">Curriculum Vitae</div>
+      <h1>Álvaro<br><em>Otero</em> Cobo</h1>
+      <div class="hero-role">Senior Technical Client Manager · Madrid, Spain</div>
+    </div>
+    <div class="hero-meta">
+      <a href="mailto:otero100@hotmail.com">otero100@hotmail.com</a>
+      <a href="mailto:alvarootero83m@gmail.com">alvarootero83m@gmail.com</a>
+      <a href="https://www.linkedin.com/in/alvarooterocobo" target="_blank">https://www.linkedin.com/in/alvarooterocobo</a>
+      <span>Rivas-Vaciamadrid, Madrid<span>
+    </div>
+  </header>
+
+  <!-- SUMMARY -->
+  <section>
+	<div class="hero-meta" style="text-align:right;"><strong><a href="#">If you prefer the CV in Spanish click here</a></strong></div>
+    <div class="sec-header"><h2>Profile</h2></div>
+    <p class="summary">
+      My name is Álvaro Otero, and I am a <strong>Senior Technical Client Manager at Tradedoubler</strong> with over 14 years of experience delivering effective, end-to-end technical solutions that solve real client challenges.<br><br>
+      I specialize in troubleshooting complex issues, providing expert technical support to clients and affiliates, and acting as a <strong>bridge between technical and business teams</strong>. By collaborating closely with both internal and external stakeholders, I ensure issues are identified, addressed, and resolved efficiently.<br><br>
+      I have delivered internal training to teams on tracking, conversion funnels, and conversion validation methods, helping improve technical understanding and overall performance across the organization. I have also provided training sessions for publishers upon request, as well as delivering a session on affiliate marketing at Skillers Academy.<br><br>
+      With a strong background in <strong>affiliate marketing and web development</strong>, I bring a practical, results-driven approach to every project. I stay up to date with the latest technologies and industry trends, allowing me to deliver innovative solutions that drive performance and business growth.<br><br>
+      Feel free to reach out — I'm always happy to explore how I can help.
+    </p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <div class="sec-header"><h2>Experience</h2></div>
+
+    <div class="exp-item">
+      <div class="exp-date">Mar 2012 — Mar 2026<br>14 yrs 1 mo</div>
+      <div>
+        <div class="exp-company"><a href="https://www.tradedoubler.com/" target="_blank" style="color:inherit;text-decoration:none;"><strong>Tradedoubler</strong></a></div>
+        <div class="exp-roles">
+          <div class="exp-role-line">Senior Technical Client Manager <span>Sep 2017 — Mar 2026 · Madrid, Spain</span></div>
+          <div class="exp-role-line">Technical Client Manager <span>Jul 2015 — Aug 2017 · Madrid, Spain</span></div>
+          <div class="exp-role-line">Technical Support Manager <span>Dec 2014 — Jun 2015 · Telford, UK</span></div>
+          <div class="exp-role-line">Implementation Manager <span>Jun 2014 — Dec 2014 · Telford, UK</span></div>
+          <div class="exp-role-line">Technical Support Executive <span>Mar 2012 — Jun 2014 · Telford, UK</span></div>
+        </div>
+        <div class="exp-desc">
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;">
+            <li style="display:flex;gap:10px;"><span style="color:var(--accent);flex-shrink:0;">→</span>Expert consultant and point of reference for sales, account management, and publisher teams, delivering integrated end-to-end technical solutions.</li>
+            <li style="display:flex;gap:10px;"><span style="color:var(--accent);flex-shrink:0;">→</span>Responsible for new client implementations, additional markets, and re-implementations across campaign and affiliate products, presenting solutions to both non-technical stakeholders and developers.</li>
+            <li style="display:flex;gap:10px;"><span style="color:var(--accent);flex-shrink:0;">→</span>Senior-level expertise in marketing attribution models, deduplication systems, and technical integration for marketing agencies.</li>
+            <li style="display:flex;gap:10px;"><span style="color:var(--accent);flex-shrink:0;">→</span>Technical support to clients and affiliates across Europe (JavaScript, PHP): sales and lead tracking, third-party redirection, RTB retargeting, and product feed implementation in CSV, XML, and JSON via XSL.</li>
+            <li style="display:flex;gap:10px;"><span style="color:var(--accent);flex-shrink:0;">→</span>Technical consultant for Spain, Portugal, and LATAM markets. Strong RESTful API skills for report integration and conversion validation.</li>
+            <li style="display:flex;gap:10px;"><span style="color:var(--accent);flex-shrink:0;">→</span>Proficient with Google Tag Manager, DoubleClick, Shopify, WordPress, Prestashop, Tealium, Eulerian, Jira, and Microsoft CRM.</li>
+            <li style="display:flex;gap:10px;"><span style="color:var(--accent);flex-shrink:0;">→</span>Delivered internal training on tracking, conversion funnels, and validation methods, as well as sessions for publishers and at Skillers Academy.</li>
+            <li style="display:flex;gap:10px;"><span style="color:var(--accent);flex-shrink:0;">→</span>Leading a project to improve and update own SDK code to implement into clients' apps to track in-app conversions.</li>
+          </ul>
+        </div>
+        <div class="exp-tags">
+          <span class="tag">GTM</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">PHP</span>
+          <span class="tag">RESTful APIs</span>
+          <span class="tag">XML/XSL</span>
+          <span class="tag">RTB</span>
+          <span class="tag">Deduplication</span>
+          <span class="tag">Jira</span>
+          <span class="tag">Microsoft CRM</span>
+          <span class="tag">Tealium</span>
+          <span class="tag">Shopify</span>
+        </div>
+
+        <div style="margin-top:20px;">
+          <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;"><strong>Key Clients</strong></div>
+          <ul style="list-style:none;padding:0;margin:0;columns:2;gap:24px;">
+            <li style="margin-bottom:6px;"><a href="https://www.mediamarkt.es" target="_blank" class="client-link">MediaMarkt</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.fnac.es" target="_blank" class="client-link">Fnac</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.casadellibro.com" target="_blank" class="client-link">Casa del Libro</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.pcbox.com" target="_blank" class="client-link">PCBOX</a></li>
+			<li style="margin-bottom:6px;"><a href="https://www.desigual.com" target="_blank" class="client-link">Desigual</a></li>
+			<li style="margin-bottom:6px;"><a href="https://www.pepejeans.com" target="_blank" class="client-link">Pepe Jeans</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.toysrus.es" target="_blank" class="client-link">ToysRus</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.ikea.com/es" target="_blank" class="client-link">Ikea</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.lidl.es" target="_blank" class="client-link">Lidl</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.barcelo.com" target="_blank" class="client-link">Barceló Hotels</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.intermundial.es" target="_blank" class="client-link">Intermundial</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.skyscanner.es" target="_blank" class="client-link">Skyscanner</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.vueling.com" target="_blank" class="client-link">Vueling</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.edreams.es" target="_blank" class="client-link">eDreams</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.viajesecorteingles.es" target="_blank" class="client-link">Viajes El Corte Inglés</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.tiendanimal.es" target="_blank" class="client-link">Tiendanimal</a></li>
+            <li style="margin-bottom:6px;"><a href="https://www.kiwoko.com" target="_blank" class="client-link">Kiwoko</a></li>
+			<li style="margin-bottom:2px;"><span style="font-size:11px;color:var(--muted);">Electrolux Group:</span></li>
+            <li style="margin-bottom:2px;padding-left:14px;"><a href="https://www.electrolux.es" target="_blank" class="client-link">Electrolux</a></li>
+            <li style="margin-bottom:2px;padding-left:14px;"><a href="https://www.aeg.es" target="_blank" class="client-link">AEG</a></li>
+            <li style="margin-bottom:6px;padding-left:14px;"><a href="https://www.zanussi.es" target="_blank" class="client-link">Zanussi</a></li>
+            <li style="margin-bottom:2px;"><span style="font-size:11px;color:var(--muted);">BSH Electrodomésticos:</span></li>
+            <li style="margin-bottom:2px;padding-left:14px;"><a href="https://www.bosch-home.com/es" target="_blank" class="client-link">Bosch</a></li>
+            <li style="margin-bottom:6px;padding-left:14px;"><a href="https://www.balay.es" target="_blank" class="client-link">Balay</a></li>
+			<li style="margin-bottom:6px;"><a href="https://www.movistarplus.es" target="_blank" class="client-link">Movistar Plus</a></li>
+            <li style="margin-bottom:2px;"><span style="font-size:11px;color:var(--muted);">Inditex Group:</span></li>
+            <li style="margin-bottom:2px;padding-left:14px;"><a href="https://www.bershka.com" target="_blank" class="client-link">Bershka</a></li>
+            <li style="margin-bottom:2px;padding-left:14px;"><a href="https://www.stradivarius.com" target="_blank" class="client-link">Stradivarius</a></li>
+            <li style="margin-bottom:2px;padding-left:14px;"><a href="https://www.pullandbear.com" target="_blank" class="client-link">Pull&amp;Bear</a></li>
+            <li style="margin-bottom:2px;padding-left:14px;"><a href="https://www.massimodutti.com" target="_blank" class="client-link">Massimo Dutti</a></li>
+            <li style="margin-bottom:6px;padding-left:14px;"><a href="https://www.oysho.com" target="_blank" class="client-link">Oysho</a></li>
+            <li style="margin-bottom:2px;"><span style="font-size:11px;color:var(--muted);">Oniverse:</span></li>
+            <li style="margin-bottom:2px;padding-left:14px;"><a href="https://www.calzedonia.com" target="_blank" class="client-link">Calzedonia</a></li>
+            <li style="margin-bottom:2px;padding-left:14px;"><a href="https://www.intimissimi.com" target="_blank" class="client-link">Intimissimi</a></li>
+            <li style="margin-bottom:6px;padding-left:14px;"><a href="https://www.tezenis.com" target="_blank" class="client-link">Tezenis</a></li>
+          </ul>
+          <p style="margin-top:16px;font-size:14px;color:var(--muted);font-style:italic;"><strong>References from my work at any of these companies are available upon request.</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">May 2011 — Jul 2011<br>3 mos</div>
+      <div>
+        <div class="exp-company"><strong>ALTEN → CECA</strong></div>
+        <div class="exp-title">Senior Developer</div>
+        <div class="exp-location">📍 Madrid, Spain</div>
+        <div class="exp-desc">Front-end development for banking institution websites.</div>
+        <div class="exp-tags"><span class="tag">JavaScript</span><span class="tag">JSP</span><span class="tag">Eclipse</span></div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Dec 2009 — Feb 2011<br>1 yr 3 mos</div>
+      <div>
+        <div class="exp-company"><strong>Atento → Telefónica</strong></div>
+        <div class="exp-title">Senior Developer</div>
+        <div class="exp-location">📍 Madrid, Spain</div>
+        <div class="exp-desc">Developed teleoperator applications using ASP 3.0, ASP.Net, JavaScript, and JSON against Oracle PL/SQL databases.</div>
+        <div class="exp-tags"><span class="tag">ASP.Net</span><span class="tag">JavaScript</span><span class="tag">Oracle</span></div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Sep 2006 — Jan 2009</div>
+      <div>
+        <div class="exp-company"><strong>Luxenter / Tormo & Asociados / Bulevar</strong></div>
+        <div class="exp-title">Developer</div>
+        <div class="exp-location">📍 Madrid, Spain</div>
+        <div class="exp-desc">Web development with ASP, HTML, SQL and Oracle databases. Online editors, content management systems, private user areas, and site maintenance.</div>
+        <div class="exp-tags"><span class="tag">ASP</span><span class="tag">HTML</span><span class="tag">SQL</span></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="sec-header"><h2>Technical Skills</h2></div>
+    <div class="skills-grid" id="skillsGrid">
+      <div class="skill-cell"><div class="skill-name">JavaScript / HTML / CSS</div><div class="skill-bar"><div class="skill-fill" data-w="95"></div></div></div>
+      <div class="skill-cell"><div class="skill-name">Python</div><div class="skill-bar"><div class="skill-fill" data-w="60"></div></div></div>
+      <div class="skill-cell"><div class="skill-name">RESTful APIs</div><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div></div>
+      <div class="skill-cell"><div class="skill-name">Google Tag Manager</div><div class="skill-bar"><div class="skill-fill" data-w="95"></div></div></div>
+      <div class="skill-cell"><div class="skill-name">PHP</div><div class="skill-bar"><div class="skill-fill" data-w="75"></div></div></div>
+      <div class="skill-cell"><div class="skill-name">XML / CSV / JSON</div><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div></div>
+      <div class="skill-cell"><div class="skill-name">Affiliate Marketing</div><div class="skill-bar"><div class="skill-fill" data-w="98"></div></div></div>
+      <div class="skill-cell"><div class="skill-name">Jira / Microsoft CRM</div><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div></div>
+      <div class="skill-cell"><div class="skill-name">Deduplication & Attribution</div><div class="skill-bar"><div class="skill-fill" data-w="92"></div></div></div>
+      <div class="skill-cell"><div class="skill-name">Shopify / WordPress</div><div class="skill-bar"><div class="skill-fill" data-w="80"></div></div></div>
+      <div class="skill-cell"><div class="skill-name">Tealium / Eulerian</div><div class="skill-bar"><div class="skill-fill" data-w="75"></div></div></div>
+      <div class="skill-cell"><div class="skill-name">OOP / SQL / Oracle</div><div class="skill-bar"><div class="skill-fill" data-w="70"></div></div></div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <div class="sec-header"><h2>Education</h2></div>
+
+    <div class="edu-item">
+      <div class="edu-year">Apr 2026 — Jul 2026</div>
+      <div>
+        <div class="edu-school">CEI Centro de Estudios Innovación, Diseño y Marketing</div>
+        <div class="edu-degree"><a href="https://cei.es/cei-curso/curso-python-online/">Python Course</a></div>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2017 — 2018</div>
+      <div>
+        <div class="edu-school">Internacional de Marketing [IM]</div>
+        <div class="edu-degree">Master's Degree in Digital Marketing & E-commerce</div>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2002 — 2005</div>
+      <div>
+        <div class="edu-school">Centro Salmantino</div>
+        <div class="edu-degree">Technician in Computer Science & Information Technology</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section>
+    <div class="sec-header"><h2>Certifications</h2></div>
+    <div class="certs-list">
+      <div class="cert-item"><div class="cert-icon">☁️</div><div class="cert-name"><a href="https://simpli-web.app.link/e/pHYzTXP7FIb" target="_blank" style="color:inherit;text-decoration:none;">Azure Fundamentals</a></div></div>
+      <div class="cert-item"><div class="cert-icon">⚡</div><div class="cert-name"><a href="https://simpli-web.app.link/e/3GYTqBAGPGb" target="_blank" style="color:inherit;text-decoration:none;">Salesforce — Master the Essentials</a></div></div>
+      <div class="cert-item"><div class="cert-icon">🗄️</div><div class="cert-name"><a href="https://simpli-web.app.link/e/8UJANHT7FIb" target="_blank" style="color:inherit;text-decoration:none;">Introduction to Big Data</a></div></div>
+      <div class="cert-item"><div class="cert-icon">💼</div><div class="cert-name"><a href="https://simpli-web.app.link/e/Rh4qDBCNPGb" target="_blank" style="color:inherit;text-decoration:none;">Basics of SaaS Business Online</a></div></div>
+      <div class="cert-item"><div class="cert-icon">📈</div><div class="cert-name"><a href="https://www.linkedin.com/posts/alvarooterocobo_visualizaci%C3%B3n-de-datos-con-power-bi-activity-7243883647747903488-CcQz" target="_blank" style="color:inherit;text-decoration:none;">Data Visualisation with Power BI</a></div></div>
+      <div class="cert-item"><div class="cert-icon">🐍</div><div class="cert-name"><a href="https://www.linkedin.com/posts/alvarooterocobo_datasciencepython-an%C3%A1lisis-dashboards-activity-7242176684106387456-2sHu" target="_blank" style="color:inherit;text-decoration:none;">Data Science with Python: Data Analysis, Dashboards & Machine Learning</a></div></div>
+	  <div class="cert-item"><div class="cert-icon">📊</div><div class="cert-name"><a href="https://analytics.google.com/analytics/academy/certificate/0B0Q-Vw4RMqcG3RiL7ugCg" target="_blank" style="color:inherit;text-decoration:none;">Google Analytics Academy — GTM Certified</a></div></div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section>
+    <div class="sec-header"><h2>Languages</h2></div>
+    <div class="langs">
+      <div class="lang-item">
+        <div class="lang-name">Spanish</div>
+        <div class="lang-level">Native / Bilingual</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">English</div>
+        <div class="lang-level">Full Professional</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Álvaro Otero Cobo</span>
+    <span>otero100@hotmail.com · alvarootero83m@gmail.com</span>
+    <span>Madrid, Spain · 2026</span>
+  </footer>
+
+</div>
+
+<script>
+  // Animate skill bars on load
+  window.addEventListener('load', () => {
+    const fills = document.querySelectorAll('.skill-fill');
+    setTimeout(() => {
+      fills.forEach(el => {
+        el.style.width = el.dataset.w + '%';
+      });
+    }, 400);
+  });
+</script>
+</body>
+</html>
